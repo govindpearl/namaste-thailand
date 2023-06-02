@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "471866643979",
+    "project_id": "namastethailand-22dbf",
+    "storage_bucket": "namastethailand-22dbf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471866643979:android:5b4a034e4c078ad273590e",
+        "android_client_info": {
+          "package_name": "com.pearlorganisation.namasteThailand"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "471866643979-mlq0gvg8sj9vt1o1puh5a5bpvpp511b4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2nqdBex97TcuiVN7lF87Lok1FjnuLV50"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "471866643979-mlq0gvg8sj9vt1o1puh5a5bpvpp511b4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
