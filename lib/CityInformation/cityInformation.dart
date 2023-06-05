@@ -552,8 +552,6 @@ class _CityInformationState extends State<CityInformation> {
           ),
         )
     );
-
+//last changes
   }
 }
-// amitnewmac branch
-// last
