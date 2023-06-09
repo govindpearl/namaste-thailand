@@ -110,7 +110,7 @@ class _ApiButtonContentState extends State<ApiButtonContent> {
                               return
                               ButtonPlaceCard(
                               place: category['title'] .toString(),
-                              imagePath: "assets/images/spa3.jpg",
+                              imagePath: category['image'],
                               onTab: () {
                                Navigator.push(
                                 context,

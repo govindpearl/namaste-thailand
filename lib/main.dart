@@ -4,6 +4,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:namastethailand/SplashScreen/splashScreen.dart';
 import 'package:namastethailand/Utility/sharePrefrences.dart';
+import 'package:namastethailand/routes/routes.dart';
 import 'AddShop/add_shop.dart';
 import 'CityInformation/cityInformation.dart';
 import 'firebase_options.dart';
@@ -42,12 +43,13 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-
       home: const SplashScreen(),
-      //home: CityInformation(id: '1', cityName: 'Bangkok',),
+
       builder: EasyLoading.init(),
 
       debugShowCheckedModeBanner: false,
+
+
 
 
     );

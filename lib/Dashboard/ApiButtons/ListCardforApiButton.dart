@@ -37,7 +37,7 @@ class ButtonPlaceCard extends StatelessWidget {
                 height: 180,
                 width: 180,
                 color: Colors.transparent,
-                child: Image.asset(imagePath,
+                child: Image.network(imagePath,
                   fit: BoxFit.fill,
                   scale: 0.15,
 
