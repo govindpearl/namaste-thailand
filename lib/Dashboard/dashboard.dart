@@ -5,6 +5,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -114,6 +115,15 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge,
+          overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom,]);
+      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        systemNavigationBarColor: Colors.transparent,
+        statusBarColor: Colors.transparent,
+      ));
+    });
+
     return Scaffold(
       backgroundColor: Colors.grey[300],
       drawer: drawer(
@@ -977,7 +987,6 @@ Widget getAdvertisement({required String imagePath, required String place}){
 }
   Widget drawer() {
     return Drawer(
-
       elevation: 2,
       shadowColor: Colors.white,
       backgroundColor: Colors.white,
@@ -986,6 +995,7 @@ Widget getAdvertisement({required String imagePath, required String place}){
             topRight: Radius.circular(20), bottomRight: Radius.circular(20)),
       ),
       child: ListView(
+        padding: EdgeInsets.zero,
         children: [
           DrawerHeader(
 
@@ -994,7 +1004,7 @@ Widget getAdvertisement({required String imagePath, required String place}){
               children: [
                 ClipOval(
                     child:
-                    AppPreferences.getUserProfile() != null && AppPreferences
+                    AppPreferences.getUserProfile() != "" && AppPreferences
                         .getUserProfile()
                         .isNotEmpty
                         ?
@@ -1004,11 +1014,13 @@ Widget getAdvertisement({required String imagePath, required String place}){
                     Image.asset(
                       "assets/icons/user.png", height: 70, width: 70,)
                 ),
+                AppPreferences.getUserDisplayName()!=""?
                 Text(
                   AppPreferences.getUserDisplayName(),
                   style: GoogleFonts.poppins(
                       color: Colors.white, fontSize: 17, letterSpacing: 2),
-                ),
+                ):SizedBox(),
+                AppPreferences.getUserEnail()!=""?
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -1026,7 +1038,7 @@ Widget getAdvertisement({required String imagePath, required String place}){
 
                     SizedBox(height: 10,)
                   ],
-                )
+                ):SizedBox()
               ],
             ),
             decoration: BoxDecoration(
@@ -1053,6 +1065,7 @@ Widget getAdvertisement({required String imagePath, required String place}){
 
             },
           ),
+          AppPreferences.getUserId()!=""?
           ListTile(
             leading: const Icon(Icons.person, color: Colors.blueGrey),
             title: Text("Profile", style: GoogleFonts.poppins()),
@@ -1060,7 +1073,7 @@ Widget getAdvertisement({required String imagePath, required String place}){
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const UserProfile()));
             },
-          ),
+          ):SizedBox(),
 /*
           ListTile(
             leading: const Icon(Icons.settings, color: Colors.blueGrey),
@@ -1089,6 +1102,7 @@ Widget getAdvertisement({required String imagePath, required String place}){
                       builder: (context) => LanguageTranslator()));
             },
           ),
+          AppPreferences.getUserId()!=""?
           ListTile(
             leading: const Icon(Icons.contact_page, color: Colors.blueGrey),
             title: Text(
@@ -1101,7 +1115,7 @@ Widget getAdvertisement({required String imagePath, required String place}){
                 MaterialPageRoute(builder: (context) => const ContactUs()),
               );
             },
-          ),
+          ):SizedBox(),
           ListTile(
             leading: const Icon(Icons.shop, color: Colors.blueGrey),
             title: Text(
@@ -1109,10 +1123,20 @@ Widget getAdvertisement({required String imagePath, required String place}){
               style: GoogleFonts.poppins(),
             ),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => AddShop()),
-              );
+              if(AppPreferences.getUserId()!=""){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AddShop()),
+                );
+              }
+              else{
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => Login()),
+                );
+
+              }
+
             },
           ),
           ListTile(
@@ -1128,6 +1152,7 @@ Widget getAdvertisement({required String imagePath, required String place}){
               );
             },
           ),
+          AppPreferences.getUserId()!=""?
           ListTile(
             leading: const Icon(Icons.logout, color: Colors.blueGrey),
             title: Text(
@@ -1144,7 +1169,18 @@ Widget getAdvertisement({required String imagePath, required String place}){
                 );
               }
             },
+          ):ListTile(
+            leading: const Icon(Icons.login, color: Colors.blueGrey),
+            title: Text(
+              'Login',
+              style: GoogleFonts.poppins(),
+            ),
+            onTap: ()
+             {
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Login()));
+            },
           ),
+          AppPreferences.getUserId()!=""?
           ListTile(
             leading: const Icon(Icons.delete, color: Colors.blueGrey),
             title: Text(
@@ -1157,7 +1193,7 @@ Widget getAdvertisement({required String imagePath, required String place}){
                   MaterialPageRoute(builder: (context) => const DeleteAccount()),
                 );
             },
-          ),
+          ):SizedBox(),
 
 
         ],

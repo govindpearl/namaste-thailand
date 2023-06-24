@@ -32,17 +32,17 @@ class AppPreferences {
    }
   static String getUserProfile() {
 
-    String? s = _preferences.getString("userProfileUrl") ?? 'Loading';
+    String? s = _preferences.getString("userProfileUrl") ?? '';
     return s;
   }
   static String getUserId() {
 
-    String? s = _preferences.getString("userId") ?? 'Loading';
+    String? s = _preferences.getString("userId") ?? '';
     return s;
   }
   static String? getUserEnail() {
 
-    String? s = _preferences.getString("userEmail") ?? 'Loading';
+    String? s = _preferences.getString("userEmail") ?? '';
     return s;
   }
   static String getUserDisplayName() {

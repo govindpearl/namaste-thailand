@@ -73,8 +73,7 @@ class _SignUpState extends State<SignUp> {
     if (username.text.isEmpty ||
         _email.text.isEmpty ||
         Pass_Controller.text.isEmpty ||
-        CpassController.text.isEmpty ||
-        mobile_no.text.isEmpty) {
+        CpassController.text.isEmpty) {
       EasyLoading.dismiss();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Please fill out all the fields')),
@@ -98,7 +97,6 @@ class _SignUpState extends State<SignUp> {
           'username': username.text,
           'email': _email.text,
           'password': Pass_Controller.text,
-          'mobile_no': mobile_no.text,
         },
       );
 
@@ -109,13 +107,12 @@ class _SignUpState extends State<SignUp> {
         String userId = response.data["token"];
         String displayName = response.data['user']['name'];
         String userEmail = response.data['user']['email'];
-        String phone_no = response.data['user']['mobile_no'];
         String msg = response.data['msg'];
          print("ture===="+msg);
 
 
 
-        AppPreferences.setUserProfile(userId: userId, displayName:displayName, userEmail:userEmail, photoUrl: "", phone_no:phone_no);
+        AppPreferences.setUserProfile(userId: userId, displayName:displayName, userEmail:userEmail, photoUrl: "", phone_no:"");
         EasyLoading.dismiss();
         Navigator.pushReplacement<void, void>(
           context,
@@ -217,35 +214,6 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
 
-                SizedBox(height: 20,),
-
-                Padding(
-                  padding: const EdgeInsets.only(left: 17, right: 17),
-                  child: Container(
-                    width: double.infinity,
-                    height: 50,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        border: Border.all(
-                            color: Colors.blueGrey,
-                            width: 1.0,
-                            style: BorderStyle.solid
-                        )
-                    ),
-                    child:  TextFormField(
-                      controller: mobile_no,
-                      decoration: InputDecoration(
-                        alignLabelWithHint: false,
-                        filled: true,
-                        hintText: "Mobile Number",
-                        border: InputBorder.none,
-                        prefixIcon: Icon(Icons.phone, color: Colors.blueGrey,),
-
-
-                      ),
-                    ),
-                  ),
-                ),
                 SizedBox(height: 20,),
 
                 Padding(

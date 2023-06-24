@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:namastethailand/CreateAccount/signUp.dart';
 import 'package:namastethailand/Dashboard/dashboard.dart';
@@ -249,10 +250,17 @@ class _LoginState extends State<Login> {
                                 },
                               );
                             },
-                            child: Text("Forget your password")),
-                        SizedBox(
-                          height: 10,
-                        ),
+                            child: Text("Forgot your password")),
+
+                        GestureDetector(
+                            onTap: (){
+                              Navigator.pushReplacement(context,
+                                  MaterialPageRoute(builder: (context)=>Dashboard()));
+                            },
+                            child: Text("Login as a guest",
+                              style: GoogleFonts.aBeeZee( color: Colors.red,
+                                  fontSize: 16, fontWeight: FontWeight.w500),)),
+                        SizedBox(height: 5,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
