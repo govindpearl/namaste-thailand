@@ -520,7 +520,7 @@ class _CityInformationState extends State<CityInformation> {
                             print("--cate---third time ${showScreen}");
                             return
                               Container(
-                                height: MediaQuery.sizeOf(context).height*0.4,
+                                height: MediaQuery.of(context).size.height*0.4,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
